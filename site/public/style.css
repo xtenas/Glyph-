@@ -1,0 +1,288 @@
+/* ==========================================================
+   60-30-10 palette
+   60%  Background : #12161A (page) / #1E222A (surfaces)
+   30%  Text       : #E2E8F0 (soft light gray)
+   10%  Accent     : #FFD166 (selective yellow)
+   ========================================================== */
+
+:root {
+  --bg: #12161a;
+  --surface: #1e222a;
+  --border: #2b313c;
+  --text: #e2e8f0;
+  --text-muted: #94a3b8;
+  --accent: #ffd166;
+  --accent-ink: #12161a; /* dark text on accent backgrounds */
+  --danger: #f87171;
+  --radius: 10px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family:
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+  line-height: 1.6;
+}
+
+/* Page container (wrap your content in <main> or use body directly) */
+body > * {
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+/* ---------- Typography ---------- */
+h1 {
+  margin: 2.5rem auto 1.5rem;
+  font-size: 2rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  margin: 0 0 0.25rem;
+  font-size: 1.35rem;
+}
+
+p {
+  margin: 0.5rem 0;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+strong {
+  color: var(--text);
+}
+
+/* ---------- Post list (index.ejs) ---------- */
+.post {
+  display: grid;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.post-item-content {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  transition:
+    border-color 0.15s ease,
+    transform 0.15s ease;
+}
+
+.post-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+.post-content {
+  margin: 0;
+  font-size: 1.05rem;
+  color: var(--text);
+  word-wrap: break-word;
+}
+
+.post-item-content:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.post-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#post-link a {
+  color: var(--text);
+}
+
+#post-link a:hover {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.post-date,
+.post-category {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.post-category {
+  margin-top: 0.75rem;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.1rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+/* <button><a></a></button>: let the link fill the button */
+.btn:has(> a) {
+  padding: 0;
+}
+
+.btn > a {
+  display: block;
+  padding: 0.6rem 1.1rem;
+  color: inherit;
+}
+
+.btn > a:hover {
+  text-decoration: none;
+}
+
+/* Primary: outlined by default, filled yellow on hover */
+.btn-primary {
+  background: transparent;
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.btn-primary:hover {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+/* Danger: quiet until hovered */
+.btn-danger {
+  background: transparent;
+  color: var(--text-muted);
+  border-color: var(--border);
+}
+
+.btn-danger:hover {
+  color: var(--danger);
+  border-color: var(--danger);
+}
+
+/* Delete form sits inline next to the other buttons */
+form[action*="_method=DELETE"] {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+}
+
+/* ---------- Forms (new.ejs / edit.ejs) ---------- */
+form {
+  display: grid;
+  gap: 1.25rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.75rem;
+  margin-top: 1rem;
+}
+
+form[action*="_method=DELETE"] {
+  background: none;
+  border: none;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font: inherit;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+textarea {
+  min-height: 180px;
+  resize: vertical;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(255, 209, 102, 0.2);
+}
+
+form > button[type="submit"]:not(.btn) {
+  justify-self: start;
+  padding: 0.7rem 1.4rem;
+  background: var(--accent);
+  color: var(--accent-ink);
+  border: none;
+  border-radius: var(--radius);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: filter 0.15s ease;
+}
+
+form > button[type="submit"]:not(.btn):hover {
+  filter: brightness(1.08);
+}
+
+/* ---------- Footer ---------- */
+footer {
+  margin-top: 4rem;
+  padding-top: 1.5rem;
+  padding-bottom: 2rem;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* ---------- Small screens ---------- */
+@media (max-width: 520px) {
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  form {
+    padding: 1.25rem;
+  }
+}

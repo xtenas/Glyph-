@@ -1,0 +1,24 @@
+<%- include("partials/header.ejs") %>
+
+<% if (locals.posts && locals.posts.length > 0) { %>
+    <div class="post">
+
+        <% locals.posts.forEach(post => { %>
+            <div class="post-item-content" onclick="window.location.href='/posts/<%= post.id %>'">
+
+                <ul class="post-list">
+                    <li>
+                        <h2 id="post-link"><a href="/posts/<%= post.id %>"><%= post.title %></a></h2>
+                        <p class="post-date"><%= post.post_date.toString().substring(0, 10) %></p>
+                        <p><%= post.post_content.slice(0, 100) %></p>
+                        <p class="post-category">Category: <%= post.category %></p>
+                    </li>
+                </ul>
+            </div>
+        <% }); %>
+        <button class="btn btn-primary"><a href="/posts/new">Create New Post</a></button>
+    </div>
+   <% } else { %>
+  <p>No posts available.</p>   
+<% } %>
+<%- include("partials/footer.ejs") %>

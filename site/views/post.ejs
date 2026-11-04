@@ -1,0 +1,17 @@
+<%- include('partials/header.ejs') %>
+<div class="post-detail">
+  <h1><%= post.title %></h1>
+  <p class="post-content"><%= post.post_content %></p>
+  <p><strong>Category:</strong> <%= post.category %></p>
+  <p>
+    <strong>Date:</strong> <%= post.post_date.toString().substring(0, 10) %>
+  </p>
+  <button class="btn btn-primary"><a href="/">Back to Home</a></button>
+  <button class="btn btn-primary">
+    <a href="/posts/edit/<%= post.id %>">Edit Post</a>
+  </button>
+  <form action="/posts/<%= post.id %>?_method=DELETE" method="POST">
+    <button type="submit" class="btn btn-danger">Delete Post</button>
+  </form>
+</div>
+<%- include('partials/footer.ejs') %>
