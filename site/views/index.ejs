@@ -1,7 +1,7 @@
 <%- include("partials/header.ejs") %>
 
+<div class="post">
 <% if (locals.posts && locals.posts.length > 0) { %>
-    <div class="post">
 
         <% locals.posts.forEach(post => { %>
             <div class="post-item-content" onclick="window.location.href='/posts/<%= post.id %>'">
@@ -16,9 +16,9 @@
                 </ul>
             </div>
         <% }); %>
-        <button class="btn btn-primary"><a href="/posts/new">Create New Post</a></button>
-    </div>
-   <% } else { %>
-  <p>No posts available.</p>   
-<% } %>
+    <% } else { %>
+        <p>No posts available.</p>   
+        <% } %>
+        <button class="btn btn-primary "><a href="/posts/new">Create New Post</a></button>
+ </div>
 <%- include("partials/footer.ejs") %>
